@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   <head>
+  <title>Iliad Outline</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <link rel="stylesheet" href="stylesheet.css"/>
+  <style type="text/css">
+/*<![CDATA[*/
+  OL {BACKGROUND-COLOR: #ffffff; COLOR: #000000; LIST-STYLE: none; }
+  OL OL {BACKGROUND-COLOR: #eeeeee; COLOR: #009933; LIST-STYLE: upper-roman; }
+  OL OL OL {      BACKGROUND-COLOR: #dddddd; COLOR: #0000ff; LIST-STYLE: upper-alpha; }
+  OL OL OL OL {   BACKGROUND-COLOR: #cccccc; COLOR: #ff00ff; LIST-STYLE: decimal; }
+  OL OL OL OL OL {        BACKGROUND-COLOR: #bbbbbb; COLOR: #000080; LIST-STYLE: lower-alpha; }
+  OL OL OL OL OL OL {     BACKGROUND-COLOR: #aaaaaa; COLOR: #ff0000; LIST-STYLE: lower-roman; }
+  OL OL OL OL OL OL OL {  BACKGROUND-COLOR: #a0a0a0; COLOR: #ffffff; LIST-STYLE: circle; }
+  span.linenr{ COLOR: #000000; }
+  /*]]>*/
+  </style>
+  <script type="text/javascript">
+//<![CDATA[
+  <!--
+  var element=0;
+  var level = new Array(); /*array of list level elements */
+  var listelements = new Array(); /* list of list entry's these two are recalculated on every load */
+  listelements = document.getElementsByTagName("li");
+  level = document.getElementsByTagName("ol");
+  var chaparray;
+  var state;
+  var okcookie;
+
+  function handleklik(event)
+  {
+        var t;
+        var lmns, olel;
+        
+    	if (event.srcElement) t = event.srcElement;
+    	else t = event.target;
+        if( event.stopPropagation ) 
+        	{event.stopPropagation(); }/* at least one of them must be true */
+        else 
+        	{event.cancelBubble = true; }
+		lmns = t.childNodes;
+        if( t.altKey )
+        {
+                element=getindex( t );
+                return;
+        }
+        for( i=0; i<lmns.length; ++i )
+        {
+                olel = lmns[i].parentNode.lastElementChild;
+                if( olel.tagName.toUpperCase() == "OL" ) 
+                {
+                        olel.style.display = ( olel.style.display == "none" ? "" : "none" ); 
+                }       
+        }
+  }
+
+  function reghandles( obj )
+  {
+        if( obj.addEventListener ) obj.addEventListener( "click", handleklik, true );
+        else obj.onclick = handleklik;
+  }
+
+  function sethandles()
+  {
+        var index;
+        
+        for( index=0; index < listelements.length; ++index )
+        {
+        	if( listelements[ index ].tagName.toUpperCase() == "LI" ) reghandles( listelements[ index ] );
+        }       
+  }
+
+  function klap( n ) {
+        var i=0;
+        
+        switch( n ) {
+        case 1:
+                for( i=0; i<level.length;++i) {
+                        if( !(level[i].className == "a0" || level[i].className == "a1" ))
+                        {       level[i].style.display="none";  }
+                        else
+                        {       level[i].style.display="";      }
+                }
+                break;
+        case 2:
+                for( i=0; i<level.length;++i) {
+                        if( !(level[i].className == "a0" || level[i].className == "a1" || level[i].className == "a2" ))
+                        {       level[i].style.display="none";  }
+                        else
+                        {       level[i].style.display="";      }
+                }
+                break;
+        case 3:
+                for( i=0; i<level.length;++i) {
+                        if( !(level[i].className == "a0" || level[i].className == "a1" || level[i].className == "a2" 
+                        	|| level[i].className == "a3"))
+                        {       level[i].style.display="none";  }
+                        else
+                        {       level[i].style.display="";      }
+                }
+                break;
+        case 4:
+                for( i=0; i<level.length;++i) {
+                        if( !(level[i].className == "a0" || level[i].className == "a1" || level[i].className == "a2" 
+                        	|| level[i].className == "a3" || level[i].className == "a4"))
+                        {       level[i].style.display="none";  }
+                        else
+                        {       level[i].style.display="";      }
+                }
+                break;
+        case 5:
+                for( i=0; i<level.length;++i) {
+                        if( !(level[i].className == "a0" || level[i].className == "a1" || level[i].className == "a2" 
+                        	|| level[i].className == "a3" || level[i].className == "a4" || level[i].className == "a5" ))
+                        {       level[i].style.display="none";  }
+                        else
+                        {       level[i].style.display="";      }
+                }
+                break;
+        case 6:
+                for( i=0; i<level.length;++i) {
+                        if( level[i].id != "a0" )
+                        {       level[i].style.display="";      }
+                }
+                break;
+        }
+        listelements[ element ].scrollIntoView( true );
+  }
+
+  function handlekey( e )
+  {
+        var liststates_ptr = parent.document.getElementById('header').liststates; 
+        var elstate_ptr = parent.document.getElementById('header').elstate;
+        /* parent page contains the 'state variables' of the list */
+        var key;
+        var altki, shiftki;
+        
+        key = window.event.keyCode;
+        altki = window.event.altKey;
+        shiftki = window.event.shiftKey;
+
+        if( key == 36 ) { element = 0; return; } /* home key */
+        key -= 48;
+        if( key >= 0 && key <= 9 )
+        {
+                if( altki )
+                {
+                        state = liststates_ptr[ key ];
+                        if( state == null ) return;
+                        for( t=0; t<level.length; ++t )
+                        {
+                                if( state.substr( t, 1 ) == "0" ) level[t].style.display = "none"; /* hide */
+                                        else if( state.substr( t, 1 ) == "1" ) level[t].style.display = ""; /* show */
+                        }
+                        listelements[ elstate_ptr[ key ]].scrollIntoView( true );
+                        return;
+                }
+                else if( shiftki )
+                {
+                        if( key == 0 ) return;
+                        /*alert( key );*/
+                        liststates_ptr[ key ] = getstate();
+                        elstate_ptr[ key ] = element;
+                        return;
+                }
+                else if( key >0 && key < 7 ) { klap( key ); return; }
+        }
+  }
+  function getindex( el )
+  {
+        for( var i=0; i < listelements.length; ++i )
+        {
+                if( listelements[ i ] == el ) return i;
+        }
+        return( 0 );
+  }
+  function writecookie( val )
+  {
+        var date$=new Date();
+        date$.setMonth( date$.getMonth()+1 );
+        var state$ = "state=" + val + "el=" + element + "; expires=" + date$.toGMTString();
+        document.cookie = state$;
+  }
+  function readcookie()
+  {
+        var steet, el, i, frm0;
+        
+        frm0 = parent.document.getElementById('header').contentWindow; 
+        i = document.cookie.indexOf( "el=" );
+        steet = document.cookie.substr( 6, i );
+        el = document.cookie.substr( i+3, document.cookie.length - 1 );
+        element = el.valueOf();
+        frm0['elstate'][0] = element;
+        return steet;
+  }
+  function getstate()
+  {
+                state = "";
+                for( var t=0; t < level.length; ++t )
+                {
+                        if( level[t].style.display == "" ) state += "1";
+                        else state += "0";
+                } 
+                return state;
+  }
+  function readtree()
+  {
+        if( !okcookie ) return;
+        writecookie( getstate() );
+  }
+  function settree()
+  {
+        if( !okcookie ) return;
+        state = readcookie();
+        if( state == "" ) { element=0; klap(1); return; }
+        for( var t=0; t < level.length; ++t )
+        {
+                if( state.substr( t, 1 ) == "0" ) level[t].style.display = "none";
+                else if( state.substr( t, 1 ) == "1" ) level[t].style.display = "";
+        }
+        parent.document.getElementById('header').contentWindow['liststates'][ 0 ] = state;
+        listelements[ element ].scrollIntoView( true );
+  }
+  function getcaps()
+  {
+   okcookie = navigator.cookieEnabled;
+  }
+
+function GetNext( el ) 
+{
+    if( el.nextElementSibling ) return el.nextElementSibling;
+    else {
+    do { el = el.nextSibling } while ( el && el.nodeType !== 1 );
+    return el; }
+}  
+function noNextSib( el )
+{
+	var n, result;
+	n = GetNext( el );
+	if( n == null ) return( true );
+	if( !(n.tagName == "li" || n.tagName == "LI" )) return( true );
+	return( false );
+}
+function opentxt( event )
+  {
+    var s1, s, i1, i2;
+    var undefined;
+    var bg, nd;
+    var targ, src, nxt;
+    var regel = '1.1.1.1';
+
+    var evt = event;
+    if( event.stopPropagation ) event.stopPropagation();
+    event.cancelBubble = true;
+    if (event.srcElement) targ = event.srcElement;
+    	else targ = event.target;
+    if (targ.nodeType == 3) targ = targ.parentNode;// defeat Safari bug
+        
+    
+    if( targ.innerText ) bg = targ.innerText;
+     	else bg = targ.textContent;
+
+	i1 = bg.indexOf( '[' );
+	i2 = bg.indexOf( ']' );
+	if( i1 < 0 ) { alert( 'line 1 format error' ); return; }
+    bg = bg.substring( i1+1, i2 );
+
+    targ = targ.parentNode;
+    while( noNextSib( targ ))
+    {
+        targ = targ.parentNode;
+        if( targ == null ) break; 
+    }
+    if( targ == null ) 
+    	nd = "24.805";
+    else
+    {
+    	targ = GetNext( targ );
+    	if( targ.innerText ) nd = targ.innerText;
+     		else nd = targ.textContent;
+		i1 = nd.indexOf( '[' );
+		i2 = nd.indexOf( ']' );
+		if( i2 < 0 ) { alert( 'line 2 format error' ); return; }
+    	nd = nd.substring( i1+1, i2 );
+    }
+
+    regel =  bg + "." + nd;
+    parent.greek.ColorTree( regel );  
+  }
+  function setfont()
+  {
+  	var fs, fsid, b, size, sz;
+  	
+	fsid = document.getElementById( "fontsizes" );
+	fs = fsid.list.selectedIndex;
+  	var size = fsid.list.options[ fs ].text;	
+  	var b = document.getElementById( 'lichaam' );
+  	var sz = parseInt( size );
+  	b.style.fontSize = sz + 4;
+  	b = parent.greek.document.getElementById( "TreeHere" );
+  	b.style.fontSize = sz;  	
+  	//b = parent.header.document.getElementById( 'headsize' );
+  	//b.style.fontSize = 2 * sz;  	
+  }
+  //      onfocus="parent.frames[2].win2=0" [in body]
+//	onload="self.focus();sethandles();getcaps();settree();setfont();"
+//	onclick="element=0;"
+//	onkeydown="handlekey();"
+//	onunload="readtree()"
+
+  //-->
+  //]]>
+  </script>
+</head>
+
+<body class="s3" id="lichaam">
+<form id="fontsizes" action="" onclick="setfont()" method="post">
+	<p align="right"><select size="1" name="list" style="font-size: 14pt">
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12" selected="selected">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+	<option value="24">24</option>
+	</select> <span  style="font-size: 12pt">set font size</span></p>
+	</form>
+
