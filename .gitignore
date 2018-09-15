@@ -13,6 +13,7 @@ Thumbs.db
 *.BUP
 *.inf
 *.bk?
+*Copy*.*
 
 iltree.exe.iets minder oud
 iltree2.txt
