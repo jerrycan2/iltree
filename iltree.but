@@ -6,8 +6,8 @@ How to use butlerform and get the Butler-paragraphs to correspond to the Greek p
 
 - the SET button:
 grow or shrink the number of checks in the Greek panel; adjust the English text accordingly.
-After pressing SET, Prev will be from its beginning up to the first check, This will be all the checks, and Next will be the rest. No paragraphs are created or deleted. The English texts are saved to their paragraph.
-You must not check before the beginning of Prev (blue) or the end of Next (green): those are fixed and This (pink), Prev or Next cannot become empty.
+After pressing SET, 'Prev' will be from its beginning up to the first check, 'This' will be all the checks, and 'Next' will be the rest. No paragraphs are created or deleted. The English texts are saved to their paragraph.
+You must not check beyond the beginning of Prev (blue) or the end of Next (green): those are fixed. This (pink), Prev or Next must not become empty.
 This operation can be undone.
 
 - SPLIT
@@ -17,12 +17,14 @@ Adjust the Greek checks to correspond to the first part of the split, set the cu
 - MERGE
 Merges the Next with This. The cursor position is irrelevant. The old Next paragraph is deleted and This receives the contents of both. This op can also be undone.
 
-No onscreen changes are saved unless one of the set-merge-split buttons is clicked
+No onscreen changes are saved unless one of the set-merge-split buttons is clicked. 'Set' saves all 3 panels, the others save only pink & green.
 
 - UNDO
 With every Set, Split or Merge an Undo-item is pushed on stack, the Undo-button pops them back again.
 
-Do not forget to save the butlertext.xml file through the file menu.
+-UNCHECK ALL
+unchecks all lines. Do not forget to set a proper selection before pressing a button!
 
-checking the butlertext:
-...
+click on the colored header-panels to select the corresponding Greek.
+
+Do not forget to save the butlertext.xml file through the file menu.

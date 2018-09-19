@@ -14,5 +14,6 @@ to do:
 -refactor all or most names for clarity
 -safety check xml line nrs. on save - done
 -xml integrity check?
--prevent accidental moving of nodes
+-prevent accidental moving of nodes - done more or less
 -also prevent changing ANY line nrs in xml and tree - ? see above
+-check the integrity of the butlertext:
