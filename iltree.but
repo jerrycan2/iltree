@@ -12,7 +12,7 @@ This operation can be undone.
 
 - SPLIT
 Splits the This-panel in two. Second part becomes the new Next: a new paragraph is created.
-Adjust the Greek checks to correspond to the first part of the split, set the cursor in the butlertext where it should be split. Then press the button. The new Next will be the remaining part of the old This. The operation can be undone.
+Adjust the Greek checks to correspond to the first part of the split, set the cursor in the butlertext where it should be split. Then press the button. The new Next will be the remaining part of the old This. The operation can be undone. Unchecking only one line, the first of the new part, is enough.
 
 - MERGE
 Merges the Next with This. The cursor position is irrelevant. The old Next paragraph is deleted and This receives the contents of both. This op can also be undone.
