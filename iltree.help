@@ -1,5 +1,7 @@
 Iltree helpfile
 
+NB: don't use double quotes (") in node text or remarks! it fucks up the html/xml created.
+
 keys: 
   
  -UP select previous node
